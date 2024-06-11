@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_mobile_application/contactus.dart';
+import 'package:restaurant_mobile_application/welcome.dart';
 
 class MyDrawer extends StatefulWidget {
   const MyDrawer({super.key});
@@ -17,7 +18,7 @@ class _MyDrawerState extends State<MyDrawer> {
         children: <Widget>[
           DrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.5),
+              color: Colors.orange.withOpacity(0.8),
             ),
             child: Column(
               children: <Widget>[
@@ -57,11 +58,11 @@ class _MyDrawerState extends State<MyDrawer> {
           Center(
             child: TextButton(
               onPressed: () {
-                //Navigator.push(context,
-                //MaterialPageRoute(builder: (context) => Welcome()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Welcome()));
               },
               style: TextButton.styleFrom(
-                  backgroundColor: Colors.black.withOpacity(0.8),
+                  backgroundColor: Colors.red.withOpacity(1),
                   fixedSize: Size(300.0, 50.0)),
               child: Text(
                 "Log out",

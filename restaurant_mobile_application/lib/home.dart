@@ -63,7 +63,7 @@ class HomePage extends State<Home> {
                   'Login In To Your Account',
                   style: TextStyle(color: Colors.black),
                 ),
-                backgroundColor: Colors.grey.withOpacity(0.5),
+                backgroundColor: Colors.orange.withOpacity(0.5),
                 elevation: 0.0,
                 actions: <Widget>[
                   IconButton(
@@ -82,7 +82,7 @@ class HomePage extends State<Home> {
                     return Card(
                       clipBehavior: Clip.antiAlias,
                       margin: EdgeInsets.symmetric(vertical: 10),
-                      color: Colors.black.withOpacity(0.4),
+                      color: Colors.orange.withOpacity(0.8),
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: Column(
@@ -95,12 +95,16 @@ class HomePage extends State<Home> {
                               ),
                               title: Text(
                                 cardDetail['title'],
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold),
                               ),
                               subtitle: Text(
                                 cardDetail['subtitle'],
                                 style: TextStyle(
-                                    color: Colors.white.withOpacity(1)),
+                                    color: Colors.white.withOpacity(1),
+                                    fontSize: 15.0),
                               ),
                             ),
                             cardDetail['image1'] != null
@@ -111,7 +115,8 @@ class HomePage extends State<Home> {
                               child: Text(
                                 cardDetail['description'],
                                 style: TextStyle(
-                                    color: Colors.white.withOpacity(0.6)),
+                                    color: Colors.white.withOpacity(1),
+                                    fontSize: 15.0),
                               ),
                             ),
                             ButtonBar(
@@ -119,8 +124,7 @@ class HomePage extends State<Home> {
                               children: [
                                 TextButton(
                                   style: TextButton.styleFrom(
-                                    backgroundColor:
-                                        Color.fromARGB(255, 255, 255, 255),
+                                    backgroundColor: Colors.white,
                                   ),
                                   onPressed: () {},
                                   child: const Text('Add to Cart'),
@@ -128,7 +132,9 @@ class HomePage extends State<Home> {
                                 Text(
                                   cardDetail['price'],
                                   style: TextStyle(
-                                      color: Colors.white, fontSize: 25.0),
+                                      color: Colors.red,
+                                      fontSize: 25.0,
+                                      fontWeight: FontWeight.bold),
                                 )
                               ],
                             ),

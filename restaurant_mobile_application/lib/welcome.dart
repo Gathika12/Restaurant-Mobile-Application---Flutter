@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_mobile_application/home.dart';
+import 'package:restaurant_mobile_application/register.dart';
 
 class Welcome extends StatefulWidget {
   @override
@@ -25,7 +27,7 @@ class WelcomePage extends State<Welcome> {
             ),
           ),
           Container(
-            color: Colors.grey.withOpacity(0.5),
+            color: Colors.white.withOpacity(0.5),
           ),
           Column(
             children: <Widget>[
@@ -34,7 +36,7 @@ class WelcomePage extends State<Welcome> {
                   'Login In To Your Account',
                   style: TextStyle(color: Colors.black),
                 ),
-                backgroundColor: Colors.grey.withOpacity(0.5),
+                backgroundColor: Colors.orange.withOpacity(0.5),
                 elevation: 0.0,
               ),
               SizedBox(height: 300),
@@ -92,6 +94,10 @@ class WelcomePage extends State<Welcome> {
                             elevation: 0,
                           ),
                           onPressed: () async {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Home()));
                             // Implement your Firebase sign-in logic here
                             try {
                               // Example of Firebase sign-in
@@ -118,6 +124,10 @@ class WelcomePage extends State<Welcome> {
                           elevation: 0,
                         ),
                         onPressed: () async {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => RegisterPage()));
                           // Implement your Firebase sign-up logic here
                           try {
                             // Example of Firebase sign-up
