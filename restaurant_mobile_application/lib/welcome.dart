@@ -9,6 +9,7 @@ class WelcomePage extends State<Welcome> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class WelcomePage extends State<Welcome> {
             ),
           ),
           Container(
-            color: Colors.grey.withOpacity(0.5), // Semi-transparent overlay
+            color: Colors.grey.withOpacity(0.5),
           ),
           Column(
             children: <Widget>[
@@ -33,71 +34,103 @@ class WelcomePage extends State<Welcome> {
                   'Login In To Your Account',
                   style: TextStyle(color: Colors.black),
                 ),
-                backgroundColor: Colors.transparent,
+                backgroundColor: Colors.grey.withOpacity(0.5),
                 elevation: 0.0,
               ),
+              SizedBox(height: 300),
               Expanded(
                 child: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       TextFormField(
-                          //controller: _passwordController,
-                          decoration: InputDecoration(
-                        labelText: 'Email',
-                        hintText: 'Enter your Email',
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.black, width: 3.0),
-                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                        controller: _emailController,
+                        decoration: InputDecoration(
+                          labelText: 'Email',
+                          hintText: 'Enter your Email',
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.black, width: 3.0),
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.blue, width: 3.0),
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                          ),
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Colors.blue,
-                              width:
-                                  3.0), // Increased border width when focused
-                          borderRadius: BorderRadius.all(Radius.circular(50)),
-                        ),
-                      )),
+                      ),
                       SizedBox(height: 20),
                       TextFormField(
-                          //controller: _passwordController,
-                          decoration: InputDecoration(
-                        labelText: 'Email',
-                        hintText: 'Enter your Email',
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.black, width: 3.0),
-                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                        controller: _passwordController,
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          hintText: 'Enter your Password',
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.black, width: 3.0),
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.blue, width: 3.0),
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                          ),
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Colors.blue,
-                              width:
-                                  3.0), // Increased border width when focused
-                          borderRadius: BorderRadius.all(Radius.circular(50)),
-                        ),
-                      )),
+                        obscureText: true,
+                      ),
                       SizedBox(height: 20),
                       Center(
-                          child: ElevatedButton(
-                              child: Text(
-                                "Log In",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.red,
-                                fixedSize: Size(150, 30),
-                                elevation: 0,
-                              ),
-                              onPressed: () async {
-                                /*FirebaseAuth.instance
-                              .signInWithEmailAndPassword(
-                                  email: _emailController.text,
-                                  password: _passwordController.text)
-                              .then((value) {*/
-                              }))
+                        child: ElevatedButton(
+                          child: Text(
+                            "Log In",
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.red,
+                            fixedSize: Size(150, 30),
+                            elevation: 0,
+                          ),
+                          onPressed: () async {
+                            // Implement your Firebase sign-in logic here
+                            try {
+                              // Example of Firebase sign-in
+                              // UserCredential userCredential = await FirebaseAuth.instance
+                              //     .signInWithEmailAndPassword(
+                              //         email: _emailController.text,
+                              //         password: _passwordController.text);
+                              // Handle successful login
+                            } catch (e) {
+                              // Handle login errors
+                            }
+                          },
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      ElevatedButton(
+                        child: Text(
+                          "Sign Up",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          fixedSize: Size(150, 30),
+                          elevation: 0,
+                        ),
+                        onPressed: () async {
+                          // Implement your Firebase sign-up logic here
+                          try {
+                            // Example of Firebase sign-up
+                            // UserCredential userCredential = await FirebaseAuth.instance
+                            //     .createUserWithEmailAndPassword(
+                            //         email: _emailController.text,
+                            //         password: _passwordController.text);
+                            // Handle successful sign-up
+                          } catch (e) {
+                            // Handle sign-up errors
+                          }
+                        },
+                      ),
                     ],
                   ),
                 ),
@@ -108,4 +141,10 @@ class WelcomePage extends State<Welcome> {
       ),
     );
   }
+}
+
+void main() {
+  runApp(MaterialApp(
+    home: Welcome(),
+  ));
 }

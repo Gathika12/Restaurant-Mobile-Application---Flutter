@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_mobile_application/home.dart';
 import 'package:restaurant_mobile_application/welcome.dart';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -20,7 +21,7 @@ void main() async {
   }*/
 
   runApp(MaterialApp(
-    home: Welcome(),
+    home: Home(),
   ));
 }
 
