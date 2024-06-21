@@ -3,6 +3,7 @@ import 'package:restaurant_mobile_application/home.dart';
 import 'package:restaurant_mobile_application/welcome.dart';
 import 'package:restaurant_mobile_application/register.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:restaurant_mobile_application/admin.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +22,7 @@ void main() async {
   }*/
 
   runApp(MaterialApp(
-    home: Welcome(),
+    home: AdminPage(),
   ));
 }
 
