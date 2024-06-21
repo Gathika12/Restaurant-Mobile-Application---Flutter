@@ -32,6 +32,7 @@ class WelcomePage extends State<Welcome> {
           Column(
             children: <Widget>[
               AppBar(
+                centerTitle: true,
                 title: Text(
                   'Login In To Your Account',
                   style: TextStyle(color: Colors.black),

@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/admin.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -26,9 +25,6 @@ class _RegisterPageState extends State<AdminPage> {
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _retypePasswordController = TextEditingController();
   TextEditingController _locationController = TextEditingController();
-
-  XFile? _image;
-  final ImagePicker _picker = ImagePicker();
 
   Widget _buildOvalTextFieldWithIcon({
     required TextEditingController controller,
@@ -66,32 +62,6 @@ class _RegisterPageState extends State<AdminPage> {
         ),
         validator: validator,
       ),
-    );
-  }
-
-  Future<void> _pickImage() async {
-    final pickedFile = await _picker.pickImage(source: Image.gallery);
-
-    setState(() {
-      if (pickedFile != null) {
-        _image = pickedFile;
-      }
-    });
-  }
-
-  Widget _buildImagePicker() {
-    return Column(
-      children: [
-        if (_image != null)
-          Image.file(
-            File(_image!.path),
-            height: 150,
-          ),
-        ElevatedButton(
-          onPressed: _pickImage,
-          child: Text('Pick an Image'),
-        ),
-      ],
     );
   }
 
@@ -190,7 +160,7 @@ class _RegisterPageState extends State<AdminPage> {
                           _buildOvalTextFieldWithIcon(
                             controller: ItemCodeController,
                             labelText: 'Item Code',
-                            icon: Icons.person,
+                            icon: Icons.numbers,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter your Item Code';
@@ -200,22 +170,22 @@ class _RegisterPageState extends State<AdminPage> {
                           ),
                           _buildOvalTextFieldWithIcon(
                             controller: _lastNameController,
-                            labelText: 'Last Name',
-                            icon: Icons.person,
+                            labelText: 'Item Name',
+                            icon: Icons.title,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your last name';
+                                return 'Please enter your Item name';
                               }
                               return null;
                             },
                           ),
                           _buildOvalTextFieldWithIcon(
                             controller: _emailController,
-                            labelText: 'Email',
-                            icon: Icons.email,
+                            labelText: 'SubTitle',
+                            icon: Icons.subtitles,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your email';
+                                return 'Please enter your SubTitle';
                               }
                               if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
                                   .hasMatch(value)) {
@@ -226,69 +196,40 @@ class _RegisterPageState extends State<AdminPage> {
                           ),
                           _buildOvalTextFieldWithIcon(
                             controller: _contactNoController,
-                            labelText: 'Contact No',
-                            icon: Icons.phone,
+                            labelText: 'Description',
+                            icon: Icons.description,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your contact number';
+                                return 'Please enter your Description';
                               }
-                              if (!RegExp(r'^\d{10}$').hasMatch(value)) {
-                                return 'Please enter a valid contact number';
-                              }
+
                               return null;
                             },
                           ),
                           _buildOvalTextFieldWithIcon(
                             controller: _usernameController,
-                            labelText: 'Username',
-                            icon: Icons.account_circle,
+                            labelText: 'Price',
+                            icon: Icons.price_check,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter a username';
+                                return 'Please enter a Price';
                               }
                               return null;
                             },
                           ),
-                          _buildOvalTextFieldWithIcon(
-                            controller: _passwordController,
-                            labelText: 'Password',
-                            icon: Icons.lock,
-                            isPassword: true,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter a password';
-                              }
-                              if (value.length < 6) {
-                                return 'Password must be at least 6 characters';
-                              }
-                              return null;
-                            },
+                          SizedBox(
+                            height: 180.0,
                           ),
-                          _buildOvalTextFieldWithIcon(
-                            controller: _retypePasswordController,
-                            labelText: 'Retype Password',
-                            icon: Icons.lock,
-                            isPassword: true,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please retype your password';
-                              }
-                              if (value != _passwordController.text) {
-                                return 'Passwords do not match';
-                              }
-                              return null;
-                            },
-                          ),
-                          _buildImagePicker(),
                           ElevatedButton(
                             onPressed: signUp,
                             child: Text(
-                              'Create Account',
+                              'Launch Item',
                               style: TextStyle(color: Colors.white),
                             ),
                             style: ElevatedButton.styleFrom(
                               foregroundColor: Colors.white,
-                              backgroundColor: Colors.black.withOpacity(0.5),
+                              backgroundColor: Colors.black.withOpacity(0.8),
+                              fixedSize: Size(100.0, 50.0),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30.0),
                               ),
