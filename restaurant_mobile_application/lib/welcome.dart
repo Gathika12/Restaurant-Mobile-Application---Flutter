@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_mobile_application/home.dart';
 import 'package:restaurant_mobile_application/register.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+void main() {
+  runApp(MaterialApp(
+    home: Welcome(),
+  ));
+}
 
 class Welcome extends StatefulWidget {
   @override
@@ -9,7 +16,6 @@ class Welcome extends StatefulWidget {
 
 class WelcomePage extends State<Welcome> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
@@ -95,20 +101,25 @@ class WelcomePage extends State<Welcome> {
                             elevation: 0,
                           ),
                           onPressed: () async {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Home()));
-                            // Implement your Firebase sign-in logic here
                             try {
-                              // Example of Firebase sign-in
-                              // UserCredential userCredential = await FirebaseAuth.instance
-                              //     .signInWithEmailAndPassword(
-                              //         email: _emailController.text,
-                              //         password: _passwordController.text);
-                              // Handle successful login
+                              await FirebaseAuth.instance
+                                  .signInWithEmailAndPassword(
+                                email: _emailController.text,
+                                password: _passwordController.text,
+                              );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Home()),
+                              );
                             } catch (e) {
                               // Handle login errors
+                              print(
+                                  'Login Error: $e'); // Print the error to console for debugging
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                    content: Text(
+                                        'Login failed: $e')), // Show error in a SnackBar
+                              );
                             }
                           },
                         ),
@@ -124,22 +135,11 @@ class WelcomePage extends State<Welcome> {
                           fixedSize: Size(150, 30),
                           elevation: 0,
                         ),
-                        onPressed: () async {
+                        onPressed: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => RegisterPage()));
-                          // Implement your Firebase sign-up logic here
-                          try {
-                            // Example of Firebase sign-up
-                            // UserCredential userCredential = await FirebaseAuth.instance
-                            //     .createUserWithEmailAndPassword(
-                            //         email: _emailController.text,
-                            //         password: _passwordController.text);
-                            // Handle successful sign-up
-                          } catch (e) {
-                            // Handle sign-up errors
-                          }
                         },
                       ),
                     ],
@@ -152,10 +152,4 @@ class WelcomePage extends State<Welcome> {
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: Welcome(),
-  ));
 }
